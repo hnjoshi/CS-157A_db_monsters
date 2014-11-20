@@ -1,0 +1,92 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.home.startup.crs_demo.StudentHome">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="user"
+        android:id="@+id/shusername"
+        android:textSize="40sp" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center">
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Register for Class"
+            android:id="@+id/regclassbtn"
+            android:textSize="35sp"
+            android:layout_alignParentTop="true"
+            android:padding="20dp"
+            android:layout_alignRight="@+id/viewregbtn"
+            android:layout_alignEnd="@+id/viewregbtn"
+            android:layout_alignLeft="@+id/viewregbtn"
+            android:layout_alignStart="@+id/viewregbtn"
+            android:layout_margin="20dp" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="View Registered Classes"
+            android:id="@+id/viewregbtn"
+            android:textSize="35sp"
+            android:layout_below="@+id/regclassbtn"
+            android:layout_centerHorizontal="true"
+            android:padding="20dp"
+            android:layout_margin="20dp" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/dropclassbtn"
+            android:textSize="35sp"
+            android:layout_below="@+id/viewregbtn"
+            android:padding="20dp"
+            android:text="Drop Class"
+            android:layout_alignRight="@+id/viewregbtn"
+            android:layout_alignEnd="@+id/viewregbtn"
+            android:layout_alignLeft="@+id/viewregbtn"
+            android:layout_alignStart="@+id/viewregbtn"
+            android:layout_margin="20dp" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="View/Update Profile"
+            android:id="@+id/viewprofilebtn"
+            android:textSize="35sp"
+            android:padding="20dp"
+            android:layout_below="@+id/dropclassbtn"
+            android:layout_alignRight="@+id/dropclassbtn"
+            android:layout_alignEnd="@+id/dropclassbtn"
+            android:layout_alignLeft="@+id/dropclassbtn"
+            android:layout_alignStart="@+id/dropclassbtn"
+            android:layout_margin="20dp" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:id="@+id/logoutbtn"
+            android:textSize="35sp"
+            android:padding="20dp"
+            android:layout_below="@+id/viewprofilebtn"
+            android:layout_alignLeft="@+id/viewprofilebtn"
+            android:layout_alignStart="@+id/viewprofilebtn"
+            android:layout_alignRight="@+id/viewprofilebtn"
+            android:layout_alignEnd="@+id/viewprofilebtn"
+            android:layout_margin="20dp" />
+    </LinearLayout>
+</RelativeLayout>

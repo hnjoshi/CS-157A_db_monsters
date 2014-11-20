@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CRS_Demo</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string-array name="account_arrays">
+        <item>Student</item>
+        <item>Instructor</item>
+    </string-array>
+    <string-array name="department_arrays">
+        <item>Computer Science</item>
+        <item>Software Engineering</item>
+        <item>Art</item>
+        <item>English</item>
+    </string-array>
+
+    <string name="title_activity_create_account">CreateAccount</string>
+    <string name="title_activity_student_home">StudentHome</string>
+    <string name="title_activity_student_profile">StudentProfile</string>
+
+</resources>
