@@ -19,5 +19,6 @@
     <string name="title_activity_create_account">CreateAccount</string>
     <string name="title_activity_student_home">StudentHome</string>
     <string name="title_activity_student_profile">StudentProfile</string>
+    <string name="title_activity_register_class">RegisterClass</string>
 
 </resources>

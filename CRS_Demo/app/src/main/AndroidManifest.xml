@@ -29,13 +29,17 @@
         <activity
             android:name="com.home.startup.crs_demo.StudentHome"
             android:label="@string/title_activity_student_home"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.home.startup.crs_demo.StudentProfile"
             android:label="@string/title_activity_student_profile"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.home.startup.crs_demo.RegisterClass"
+            android:label="@string/title_activity_register_class" >
         </activity>
     </application>
 
