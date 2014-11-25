@@ -1,13 +1,9 @@
 package com.home.startup.crs_demo;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -17,8 +13,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 
 
 public class RegisterClass extends Activity {
@@ -26,7 +20,7 @@ public class RegisterClass extends Activity {
     private ListView list;
 
     private String[] className;
-    private String[] availableSeats;
+    private String[] totalSeats;
     private String[] semester;
 
     private Bitmap thumbImg;
@@ -38,7 +32,7 @@ public class RegisterClass extends Activity {
 
         getOfferedCourses();
 
-        CustomList adapter = new CustomList(RegisterClass.this, className, availableSeats, semester, thumbImg);
+        CustomList adapter = new CustomList(RegisterClass.this, className, totalSeats, semester, thumbImg);
         list=(ListView)findViewById(R.id.list);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -64,37 +58,31 @@ public class RegisterClass extends Activity {
             pst=conn.prepareStatement("SELECT * FROM course");
             rs = pst.executeQuery();
 
-            int count=0;
+            int count=-1;
             while(rs.next())
             {
                 ++count;
             }
-            Log.w("count",""+count);
+            //Log.w("count",""+count);
             className = new String[count];
-            availableSeats = new String[count];
+            totalSeats = new String[count];
             semester = new String[count];
             rs.first();
 
             int c=0;
             while (rs.next()) {
-                className[c] = rs.getString(2);
-                availableSeats[c] = rs.getString(5);
-                semester[c] = rs.getString(6);
+                className[c] = "Class: "+rs.getString(2)+
+                        ", Status: "+rs.getString(4);
+                totalSeats[c] = "Total Seats: "+rs.getString(5)+
+                        ", Time: "+rs.getString(9)+" to "+
+                        rs.getString(10);
+                semester[c] = "Term: "+rs.getString(6)+
+                        ", Date: "+rs.getString(7)+" to "+
+                        rs.getString(8);
                 c++;
             }
 
-            //ResultSetMetaData rsmd = rs.getMetaData();
-            //PrintColumnTypes.printColTypes(rsmd);
-            //System.out.println("");
 
-            //int numberOfColumns = rsmd.getColumnCount();
-
-            /*for (int i = 1; i <= numberOfColumns; i++) {
-                if (i > 1) System.out.print(",  ");
-                String columnName = rsmd.getColumnName(i);
-                System.out.print(columnName);
-            }
-            System.out.println("");*/
         }
         catch (Exception e)
         {
@@ -123,6 +111,7 @@ public class RegisterClass extends Activity {
     }
 }
 
+/*
 // very use full if the programmer don't have direct access to schema
 class PrintColumnTypes  {
 
@@ -138,3 +127,19 @@ class PrintColumnTypes  {
     }
 }
 
+
+//extra
+
+//ResultSetMetaData rsmd = rs.getMetaData();
+            //PrintColumnTypes.printColTypes(rsmd);
+            //System.out.println("");
+
+            //int numberOfColumns = rsmd.getColumnCount();
+
+            for (int i = 1; i <= numberOfColumns; i++) {
+                if (i > 1) System.out.print(",  ");
+                String columnName = rsmd.getColumnName(i);
+                System.out.print(columnName);
+            }
+            System.out.println("");
+*/
