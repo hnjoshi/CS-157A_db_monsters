@@ -19,6 +19,7 @@ import java.sql.ResultSet;
 public class Login extends Activity {
 
     private static String USER_NAME;
+    private static String USER_ID;
 
     EditText username;
     EditText password;
@@ -80,21 +81,34 @@ public class Login extends Activity {
             PreparedStatement pst=null;
             ResultSet rs=null;
 
+            boolean go=false;
+
             if(acType.getSelectedItem().toString().equals("Student"))
             {
                 pst=conn.prepareStatement("SELECT * FROM student WHERE UserName=?;");
                 pst.setString(1, username.getText().toString());
                 rs=pst.executeQuery();
+
+                if(rs.next())
+                {
+                    USER_ID = rs.getString("sID");
+                    go = true;
+                }
+
             }
             else
             {
                 pst=conn.prepareStatement("SELECT * FROM instructor WHERE UserName=?;");
                 pst.setString(1, username.getText().toString());
                 rs=pst.executeQuery();
+
+                if(rs.next())
+                {
+                    USER_ID = rs.getString("iID");
+                    go = true;
+                }
             }
-
-
-            if(rs.next())
+            if(go)
             {
                 String DBpass = rs.getString("Password");
 
@@ -122,9 +136,9 @@ public class Login extends Activity {
         }
         catch (Exception e)
         {
+            //e.printStackTrace();
             Toast.makeText(Login.this, "Unable to connect with server", Toast.LENGTH_SHORT).show();
             toastAppeared=true;
-            //e.printStackTrace();
         }
         finally
         {
@@ -168,5 +182,7 @@ public class Login extends Activity {
     {
         USER_NAME = newUserName;
     }
+
+    public String getUSER_ID(){ return USER_ID;}
 
 }
