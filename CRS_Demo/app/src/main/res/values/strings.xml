@@ -21,5 +21,6 @@
     <string name="title_activity_student_profile">StudentProfile</string>
     <string name="title_activity_register_class">RegisterClass</string>
     <string name="title_activity_view_enrolled">ViewEnrolled</string>
+    <string name="title_activity_drop_classes">DropClasses</string>
 
 </resources>

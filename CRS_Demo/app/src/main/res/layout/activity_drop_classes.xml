@@ -1,0 +1,76 @@
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#3B3131">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#FBB117">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Drop Classes"
+            android:id="@+id/textView"
+            android:textColor="#FFFFFF"
+            android:layout_centerInParent="true"
+            android:textSize="35sp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp" />
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="472dp"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentEnd="false">
+    </ListView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Selected Classes: "
+        android:id="@+id/selctedCoursestxt"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        android:layout_margin="20dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:weightSum="1">
+
+        <Button
+            android:layout_width="271dp"
+            android:layout_height="wrap_content"
+            android:text="Drop Selected Classes"
+            android:id="@+id/dropbtn"
+            android:background="@drawable/round_corner_buttons"
+            android:layout_margin="20dp"
+            android:textSize="35sp"
+            android:textColor="#FFFFFF"
+            android:padding="15dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Undo"
+            android:id="@+id/undobtn"
+            android:background="@drawable/round_corner_buttons"
+            android:layout_margin="20dp"
+            android:textSize="35sp"
+            android:textColor="#FFFFFF"
+            android:layout_weight="0.42"
+            android:padding="15dp" />
+    </LinearLayout>
+
+</LinearLayout>

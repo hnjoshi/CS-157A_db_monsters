@@ -16,6 +16,7 @@ public class StudentHome extends Activity {
     Button logoutbtn;
     Button regclassbtn;
     Button viewRegBtn;
+    Button dropClassesBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,7 @@ public class StudentHome extends Activity {
         logoutbtn = (Button)findViewById(R.id.logoutbtn);
         regclassbtn = (Button)findViewById(R.id.regclassbtn);
         viewRegBtn = (Button)findViewById(R.id.viewregbtn);
+        dropClassesBtn = (Button)findViewById(R.id.dropclassbtn);
 
         Login lg = new Login();
         username.setText(lg.getUserName() + " Home");
@@ -36,6 +38,17 @@ public class StudentHome extends Activity {
         setupLogoutbtn();
         setupRegClassbtn();
         setupViewRegBtn();
+        setupDropClassBtn();
+    }
+
+    private void setupDropClassBtn()
+    {
+        dropClassesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(StudentHome.this,DropClasses.class));
+            }
+        });
     }
 
     private void setupViewRegBtn()
