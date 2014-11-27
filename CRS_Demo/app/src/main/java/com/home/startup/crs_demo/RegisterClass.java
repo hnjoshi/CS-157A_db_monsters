@@ -43,7 +43,7 @@ public class RegisterClass extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                if(RegisteredUser(cID[position]))
+                if(RegisteredClass(cID[position]))
                 {
                     Toast.makeText(RegisterClass.this, "You are enrolled.", Toast.LENGTH_SHORT).show();
                 }
@@ -55,7 +55,7 @@ public class RegisterClass extends Activity {
         });
     }
 
-    private boolean RegisteredUser(String courseID)
+    private boolean RegisteredClass(String courseID)
     {
         boolean registred = false;
 
@@ -73,7 +73,7 @@ public class RegisterClass extends Activity {
             PreparedStatement pst = null;
             ResultSet rs = null;
 
-            pst = conn.prepareStatement("SELECT * FROM enrollment WHERE cID=? AND sID=?;");
+            pst = conn.prepareStatement("SELECT * FROM enrollment WHERE cID = ? and sID=?;");
             pst.setString(1, courseID);
             pst.setString(2, user_id);
             rs = pst.executeQuery();

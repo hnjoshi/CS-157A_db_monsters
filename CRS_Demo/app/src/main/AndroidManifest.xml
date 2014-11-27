@@ -41,6 +41,10 @@
             android:name="com.home.startup.crs_demo.RegisterClass"
             android:label="@string/title_activity_register_class" >
         </activity>
+        <activity
+            android:name="com.home.startup.crs_demo.ViewEnrolled"
+            android:label="@string/title_activity_view_enrolled" >
+        </activity>
     </application>
 
 </manifest>
