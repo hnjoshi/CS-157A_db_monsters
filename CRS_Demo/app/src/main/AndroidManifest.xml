@@ -49,6 +49,18 @@
             android:name="com.home.startup.crs_demo.DropClasses"
             android:label="@string/title_activity_drop_classes" >
         </activity>
+        <activity
+            android:name="com.home.startup.crs_demo.instructorHome"
+            android:label="@string/title_activity_instructor_home" >
+        </activity>
+        <activity
+            android:name="com.home.startup.crs_demo.InstructorProfile"
+            android:label="@string/title_activity_instructor_profile" >
+        </activity>
+        <activity
+            android:name="com.home.startup.crs_demo.AssignedCourses"
+            android:label="@string/title_activity_assigned_courses" >
+        </activity>
     </application>
 
 </manifest>

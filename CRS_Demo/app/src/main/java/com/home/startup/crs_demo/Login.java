@@ -28,6 +28,7 @@ public class Login extends Activity {
     Spinner acType;
 
     boolean toastAppeared = false;
+    boolean isStudent = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,12 @@ public class Login extends Activity {
                 {
                     Toast.makeText(Login.this, "Login Successful!", Toast.LENGTH_SHORT).show();
                     USER_NAME = username.getText().toString();
-                    startActivity(new Intent(Login.this, StudentHome.class));
+                    if(isStudent) {
+                        startActivity(new Intent(Login.this, StudentHome.class));
+                    }
+                    else{
+                        startActivity(new Intent(Login.this, instructorHome.class));
+                    }
                 }
                 else if(!toastAppeared)
                 {
@@ -85,6 +91,7 @@ public class Login extends Activity {
 
             if(acType.getSelectedItem().toString().equals("Student"))
             {
+                isStudent = true;
                 pst=conn.prepareStatement("SELECT * FROM student WHERE UserName=?;");
                 pst.setString(1, username.getText().toString());
                 rs=pst.executeQuery();
@@ -98,6 +105,7 @@ public class Login extends Activity {
             }
             else
             {
+                isStudent = false;
                 pst=conn.prepareStatement("SELECT * FROM instructor WHERE UserName=?;");
                 pst.setString(1, username.getText().toString());
                 rs=pst.executeQuery();

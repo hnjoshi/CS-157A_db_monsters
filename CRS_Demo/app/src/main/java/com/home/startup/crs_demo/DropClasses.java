@@ -85,11 +85,6 @@ public class DropClasses extends Activity {
                     txt += " "+userChoice2[i];
                 }
                 selectedClassestxt.setText("Selected Classes: "+txt);
-                /*Log.w("User choice", userChoiceptr+"");
-                for(int i=0; i<userChoiceptr; i++)
-                {
-                    Log.i("User Selected",""+userChoice[i]+" "+userChoice2[i]);
-                }*/
             }
         });
     }
@@ -124,7 +119,6 @@ public class DropClasses extends Activity {
                 {
                     e.printStackTrace();
                     Toast.makeText(DropClasses.this, "Unable to connect with server", Toast.LENGTH_SHORT).show();
-
                 }
                 finally
                 {

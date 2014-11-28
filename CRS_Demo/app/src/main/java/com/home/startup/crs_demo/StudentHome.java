@@ -32,7 +32,7 @@ public class StudentHome extends Activity {
         dropClassesBtn = (Button)findViewById(R.id.dropclassbtn);
 
         Login lg = new Login();
-        username.setText(lg.getUserName() + " Home");
+        username.setText(lg.getUserName() + " Student Home");
 
         setupViewProfilebtn();
         setupLogoutbtn();

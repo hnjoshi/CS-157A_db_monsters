@@ -22,5 +22,8 @@
     <string name="title_activity_register_class">RegisterClass</string>
     <string name="title_activity_view_enrolled">ViewEnrolled</string>
     <string name="title_activity_drop_classes">DropClasses</string>
+    <string name="title_activity_instructor_home">instructorHome</string>
+    <string name="title_activity_instructor_profile">InstructorProfile</string>
+    <string name="title_activity_assigned_courses">AssignedCourses</string>
 
 </resources>
