@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -59,37 +58,26 @@ public class AssignGrades extends Activity {
 
                 getRegisteredStudentsforSelectedCourse();
 
-                CustomList2 adapter = new CustomList2(AssignGrades.this, sID, name, grade);
+                final CustomList2 adapter = new CustomList2(AssignGrades.this, sID, name, grade);
                 list2=(ListView)findViewById(R.id.list2);
                 list2.setAdapter(adapter);
 
                 gSubmitbtn = (Button)findViewById(R.id.gSubmitbtn);
-                setupgSubmitbtn();
+                gSubmitbtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        for(int i=0; i < grade.length; i++)
+                        {
+                            grade[i] = adapter.getnewGrade(i);
+                        }
+
+                        updateGrades();
+                    }
+                });
             }
         });
 
 
-    }
-
-    private void setupgSubmitbtn()
-    {
-        gSubmitbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-
-                //manually entering grades
-                for(int i=0; i < grade.length; i++)
-                {
-                    grade[i] = "A-";
-                    Log.w("Grade", sID[i]+" has " +grade[i] + "");
-                }
-
-                updateGrades();
-
-            }
-        });
     }
 
     private void updateGrades()
