@@ -39,6 +39,30 @@ public class instructorHome extends Activity {
 
         setupAssignedbtn();
         setupProfilebtn();
+        setupAssignGrades();
+        setupLogOutbtn();
+    }
+
+    private void setupAssignGrades()
+    {
+        aGradesbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), AssignGrades.class));
+            }
+        });
+    }
+
+    private void setupLogOutbtn()
+    {
+        logoutbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Login.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setupAssignedbtn()

@@ -1,0 +1,49 @@
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#3B3131"
+    android:weightSum="1">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#FBB117">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Assign Grades"
+            android:id="@+id/textView"
+            android:textColor="#FFFFFF"
+            android:layout_centerInParent="true"
+            android:textSize="35sp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp" />
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/list2"
+        android:layout_width="fill_parent"
+        android:layout_height="577dp"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentEnd="false"
+        android:layout_weight="0.73">
+    </ListView>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit Grades"
+        android:id="@+id/gSubmitbtn"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/round_corner_buttons"
+        android:layout_margin="20dp"
+        android:textSize="35dp"
+        android:textColor="#FFFFFF"
+        android:padding="10dp" />
+</LinearLayout>

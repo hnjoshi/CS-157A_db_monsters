@@ -22,11 +22,16 @@ public class AssignedCourses extends Activity {
     private String time[];
     private String date[];
 
+    String userID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_assigned_courses);
+
+        Login lg = new Login();
+        userID = lg.getUSER_ID();
 
         getAssignedCourses();
 
@@ -52,10 +57,11 @@ public class AssignedCourses extends Activity {
                     "\t(select *\n" +
                     "\tfrom\n" +
                     "\t\t(select iID, Location, cID\n" +
-                    "\t\tfrom courseassignment where iID=1) a\n" +
+                    "\t\tfrom courseassignment where iID=?) a\n" +
                     "\tnatural join course c) x\n" +
                     "    join department d\n" +
                     "    where d.dID = x.dID");
+            pst.setString(1, userID);
             rs = pst.executeQuery();
 
             int count=0;

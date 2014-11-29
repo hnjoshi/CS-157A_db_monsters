@@ -61,6 +61,11 @@
             android:name="com.home.startup.crs_demo.AssignedCourses"
             android:label="@string/title_activity_assigned_courses" >
         </activity>
+        <activity
+            android:name="com.home.startup.crs_demo.AssignGrades"
+            android:label="@string/title_activity_assign_grades"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
     </application>
 
 </manifest>
