@@ -26,11 +26,16 @@ public class ViewEnrolled extends Activity {
 
     private Bitmap thumbImg;
 
+    private String userID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_view_enrolled);
+
+        Login lg = new Login();
+        userID = lg.getUSER_ID();
 
         getEnrolledCourses();
 
@@ -53,11 +58,12 @@ public class ViewEnrolled extends Activity {
             ResultSet rs = null;
             pst = conn.prepareStatement("select a.Title, a.Term, a.StartTime, a.EndTime, a.StartDate, a.EndDate, d.Name\n" +
                     "from (select * from\n" +
-                    "\t\t(select cID from enrollment where sID=1) courseID \n" +
+                    "\t\t(select cID from enrollment where sID=?) courseID \n" +
                     "     natural join\n" +
                     "     course RegCourse) a\n" +
                     "join department d\n" +
                     "where a.dID=d.dID");
+            pst.setString(1, userID);
             rs = pst.executeQuery();
 
             int count=0;

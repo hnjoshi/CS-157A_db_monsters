@@ -13,7 +13,6 @@ public class instructorHome extends Activity {
 
     private TextView uname;
     private Button assignedbtn;
-    private Button addStudentbtn;
     private Button rStudentbtn;
     private Button aGradesbtn;
     private Button vProfile;
@@ -28,19 +27,28 @@ public class instructorHome extends Activity {
 
         uname = (TextView)findViewById(R.id.iusername);
         assignedbtn = (Button)findViewById(R.id.iassignedCourses);
-        addStudentbtn = (Button)findViewById(R.id.iaddStudent);
         rStudentbtn = (Button)findViewById(R.id.iremoveStudent);
         aGradesbtn = (Button)findViewById(R.id.iassigngrades);
         vProfile = (Button)findViewById(R.id.iviewProfile);
         logoutbtn = (Button)findViewById(R.id.ilogout);
 
-
         uname.setText(lg.getUserName() + " Instructor Home");
 
         setupAssignedbtn();
+        setupDropStudent();
         setupProfilebtn();
         setupAssignGrades();
         setupLogOutbtn();
+    }
+
+    private void setupDropStudent()
+    {
+        rStudentbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), DropStudent.class));
+            }
+        });
     }
 
     private void setupAssignGrades()

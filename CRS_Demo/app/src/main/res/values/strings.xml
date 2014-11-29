@@ -15,7 +15,6 @@
         <item>Art</item>
         <item>English</item>
     </string-array>
-
     <string-array name="college_grades">
         <item>A+</item>
         <item>A</item>
@@ -43,5 +42,6 @@
     <string name="title_activity_instructor_profile">InstructorProfile</string>
     <string name="title_activity_assigned_courses">AssignedCourses</string>
     <string name="title_activity_assign_grades">AssignGrades</string>
+    <string name="title_activity_drop_student">DropStudent</string>
 
 </resources>

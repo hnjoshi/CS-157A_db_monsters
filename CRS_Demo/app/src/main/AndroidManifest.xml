@@ -39,32 +39,43 @@
         </activity>
         <activity
             android:name="com.home.startup.crs_demo.RegisterClass"
-            android:label="@string/title_activity_register_class" >
+            android:label="@string/title_activity_register_class"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.home.startup.crs_demo.ViewEnrolled"
-            android:label="@string/title_activity_view_enrolled" >
+            android:label="@string/title_activity_view_enrolled"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.home.startup.crs_demo.DropClasses"
-            android:label="@string/title_activity_drop_classes" >
+            android:label="@string/title_activity_drop_classes"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.home.startup.crs_demo.instructorHome"
-            android:label="@string/title_activity_instructor_home" >
+            android:label="@string/title_activity_instructor_home"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.home.startup.crs_demo.InstructorProfile"
-            android:label="@string/title_activity_instructor_profile" >
+            android:label="@string/title_activity_instructor_profile"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.home.startup.crs_demo.AssignedCourses"
-            android:label="@string/title_activity_assigned_courses" >
+            android:label="@string/title_activity_assigned_courses"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.home.startup.crs_demo.AssignGrades"
             android:label="@string/title_activity_assign_grades"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" >
+        </activity>
+        <activity
+            android:name="com.home.startup.crs_demo.DropStudent"
+            android:label="@string/title_activity_drop_student" >
         </activity>
     </application>
 
