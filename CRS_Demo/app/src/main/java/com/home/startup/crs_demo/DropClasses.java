@@ -143,19 +143,18 @@ public class DropClasses extends Activity {
             ResultSet rs = null;
             pst = conn.prepareStatement("select a.cID, a.Title, a.Term, a.StartTime, a.EndTime, a.StartDate, a.EndDate, d.Name\n" +
                     "from (select * from\n" +
-                    "\t\t(select cID from enrollment where sID=1) courseID \n" +
+                    "\t\t(select cID from enrollment where sID=?) courseID \n" +
                     "     natural join\n" +
                     "     course RegCourse) a\n" +
                     "join department d\n" +
                     "where a.dID=d.dID");
+            pst.setString(1, sID);
             rs = pst.executeQuery();
 
-            int count=0;
-            while(rs.next())
-            {
-                ++count;
-            }
+            rs.last();
+            int count = rs.getRow();
             rs.beforeFirst();
+
             userChoice = new String[count];
             userChoice2 = new String[count];
 

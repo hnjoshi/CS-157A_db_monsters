@@ -64,11 +64,8 @@ public class AssignedCourses extends Activity {
             pst.setString(1, userID);
             rs = pst.executeQuery();
 
-            int count=0;
-            while(rs.next())
-            {
-                ++count;
-            }
+            rs.last();
+            int count = rs.getRow();
             rs.beforeFirst();
 
             title = new String[count];

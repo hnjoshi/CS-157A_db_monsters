@@ -67,7 +67,6 @@ public class DropStudent extends Activity {
                     public void onClick(View v) {
                         for (int i = 0; i < selected.length; i++) {
                             selected[i] = adapter.getSelected(i);
-
                         }
 
                         dropSelectedStudent();
@@ -135,11 +134,8 @@ public class DropStudent extends Activity {
             pst.setString(1, selectedCourseID);
             rs = pst.executeQuery();
 
-            int count=0;
-            while(rs.next())
-            {
-                ++count;
-            }
+            rs.last();
+            int count = rs.getRow();
             rs.beforeFirst();
 
             sID = new String[count];
@@ -191,11 +187,8 @@ public class DropStudent extends Activity {
             pst.setString(1, userID);
             rs = pst.executeQuery();
 
-            int count=0;
-            while(rs.next())
-            {
-                ++count;
-            }
+            rs.last();
+            int count = rs.getRow();
             rs.beforeFirst();
 
             title = new String[count];

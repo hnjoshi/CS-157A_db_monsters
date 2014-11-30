@@ -66,13 +66,10 @@ public class ViewEnrolled extends Activity {
             pst.setString(1, userID);
             rs = pst.executeQuery();
 
-            int count=0;
-            while(rs.next())
-            {
-                ++count;
-            }
+            rs.last();
+            int count = rs.getRow();
             rs.beforeFirst();
-            //Log.w("Count", count+"");   // worked
+            //Log.w("Count",count+"");
 
             title = new String[count];
             department = new String[count];

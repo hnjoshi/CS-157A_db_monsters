@@ -75,7 +75,8 @@
         </activity>
         <activity
             android:name="com.home.startup.crs_demo.DropStudent"
-            android:label="@string/title_activity_drop_student" >
+            android:label="@string/title_activity_drop_student"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 

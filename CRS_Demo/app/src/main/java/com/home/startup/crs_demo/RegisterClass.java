@@ -185,11 +185,10 @@ public class RegisterClass extends Activity {
             pst=conn.prepareStatement("SELECT * FROM course");
             rs = pst.executeQuery();
 
-            int count=0;
-            while(rs.next())
-            {
-                ++count;
-            }
+            rs.last();
+            int count = rs.getRow();
+            rs.beforeFirst();
+
             className = new String[count];
             totalSeats = new String[count];
             semester = new String[count];
