@@ -21,11 +21,11 @@ public class Login extends Activity {
     private static String USER_NAME;
     private static String USER_ID;
 
-    EditText username;
-    EditText password;
-    Button loginbtn;
-    Button createACbtn;
-    Spinner acType;
+    EditText username; //set equal to username editable box in activity_login.xml
+    EditText password; //set equal to password editable box in activity_login.xml
+    Button loginbtn;   //set equal to login button in activity_login.xml
+    Button createACbtn;//set equal to create account button in activity_login.xml
+    Spinner acType; //set equal to the spinner acType in activity_login.xml
 
     boolean toastAppeared = false;
     boolean isStudent = false;
@@ -36,6 +36,7 @@ public class Login extends Activity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login);
 
+        //NOTE: must ALWAYS cast to left hand side variable
         username = (EditText)findViewById(R.id.username);
         password = (EditText)findViewById(R.id.password);
         loginbtn = (Button)findViewById(R.id.loginbtn);
@@ -46,6 +47,10 @@ public class Login extends Activity {
         setupSignInbtn();
     }
 
+
+    /**
+     * setupSignInbtn manages the "Sign In" button on activity_login.xml
+     */
     private void setupSignInbtn()
     {
         loginbtn.setOnClickListener(new View.OnClickListener() {
