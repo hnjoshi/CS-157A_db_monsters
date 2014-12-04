@@ -17,6 +17,7 @@ public class StudentHome extends Activity {
     Button regclassbtn;
     Button viewRegBtn;
     Button dropClassesBtn;
+    Button todobtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class StudentHome extends Activity {
         regclassbtn = (Button)findViewById(R.id.regclassbtn);
         viewRegBtn = (Button)findViewById(R.id.viewregbtn);
         dropClassesBtn = (Button)findViewById(R.id.dropclassbtn);
+        todobtn = (Button)findViewById(R.id.stodobtn);
 
         Login lg = new Login();
         username.setText(lg.getUserName() + " Student Home");
@@ -39,6 +41,17 @@ public class StudentHome extends Activity {
         setupRegClassbtn();
         setupViewRegBtn();
         setupDropClassBtn();
+        setupToDobtn();
+    }
+
+    private void setupToDobtn()
+    {
+        todobtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ToDo.class));
+            }
+        });
     }
 
     private void setupDropClassBtn()

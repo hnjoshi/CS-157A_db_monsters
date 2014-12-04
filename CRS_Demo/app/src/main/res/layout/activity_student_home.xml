@@ -34,7 +34,7 @@
             android:layout_alignEnd="@+id/viewregbtn"
             android:layout_alignLeft="@+id/viewregbtn"
             android:layout_alignStart="@+id/viewregbtn"
-            android:layout_margin="20dp" />
+            android:layout_margin="10dp" />
 
         <Button
             android:layout_width="fill_parent"
@@ -45,7 +45,7 @@
             android:layout_below="@+id/regclassbtn"
             android:layout_centerHorizontal="true"
             android:padding="20dp"
-            android:layout_margin="20dp" />
+            android:layout_margin="10dp" />
 
         <Button
             android:layout_width="fill_parent"
@@ -59,7 +59,7 @@
             android:layout_alignEnd="@+id/viewregbtn"
             android:layout_alignLeft="@+id/viewregbtn"
             android:layout_alignStart="@+id/viewregbtn"
-            android:layout_margin="20dp" />
+            android:layout_margin="10dp" />
 
         <Button
             android:layout_width="fill_parent"
@@ -73,7 +73,16 @@
             android:layout_alignEnd="@+id/dropclassbtn"
             android:layout_alignLeft="@+id/dropclassbtn"
             android:layout_alignStart="@+id/dropclassbtn"
-            android:layout_margin="20dp" />
+            android:layout_margin="10dp" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="To do items"
+            android:id="@+id/stodobtn"
+            android:textSize="35sp"
+            android:padding="20dp"
+            android:layout_margin="10dp" />
 
         <Button
             android:layout_width="fill_parent"
@@ -87,6 +96,6 @@
             android:layout_alignStart="@+id/viewprofilebtn"
             android:layout_alignRight="@+id/viewprofilebtn"
             android:layout_alignEnd="@+id/viewprofilebtn"
-            android:layout_margin="20dp" />
+            android:layout_margin="10dp" />
     </LinearLayout>
 </RelativeLayout>
