@@ -31,8 +31,7 @@ public class Login extends Activity {
     boolean isStudent = false;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) //from activity_login.xml
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login);
@@ -50,8 +49,7 @@ public class Login extends Activity {
 
 
     /**
-     * setupSignInbtn() manages the "Sign In" button on activity_login.xml
-     * NOTE: maybe this can be one of the functionality requirements?
+     * setupSignInbtn manages the "Sign In" button on activity_login.xml
      */
     private void setupSignInbtn()
     {
@@ -61,37 +59,23 @@ public class Login extends Activity {
 
                 if(username.getText().length()>0 && password.getText().length()>0 && registerdUser())
                 {
-                    //Toast makes is a small feedback about an operation in a small pop up
                     Toast.makeText(Login.this, "Login Successful!", Toast.LENGTH_SHORT).show();
                     USER_NAME = username.getText().toString();
-                    if(isStudent)
-                    {
-                        //NOTE: new Intent is some form of navigation function in Android dev
-
-                        //go to StudentHome.class
-                        startActivity(new Intent(Login.this, StudentHome.class)); //for student
+                    if(isStudent) {
+                        startActivity(new Intent(Login.this, StudentHome.class));
                     }
-                    else
-                    {
-                        //go to instructorHome.class
-                        startActivity(new Intent(Login.this, instructorHome.class)); //for instructor
+                    else{
+                        startActivity(new Intent(Login.this, instructorHome.class));
                     }
                 }
-                else if(!toastAppeared) //NOTE: consider changing this to !registeredUser()
+                else if(!toastAppeared)
                 {
-                    //case should not appear because registeredUser() confirms if user logging in is in DB
                     Toast.makeText(Login.this, "Check username and password", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-    /**
-     * registeredUser() checks to make sure that person trying to sign in is a user in the DB tables
-     * Tables to check in are: Student and Instructor
-     * @return true if the person trying to login is a user
-     * @return false if the person trying to login is NOT a user
-     */
     private boolean registerdUser()
     {
         boolean registred = false;
@@ -110,7 +94,6 @@ public class Login extends Activity {
 
             boolean go=false;
 
-            //check if user is in Username attribute in either Student or Instructor table in DB
             if(acType.getSelectedItem().toString().equals("Student"))
             {
                 isStudent = true;
@@ -138,8 +121,6 @@ public class Login extends Activity {
                     go = true;
                 }
             }
-
-            //if user is registered as student or teacher
             if(go)
             {
                 String DBpass = rs.getString("Password");
@@ -159,7 +140,7 @@ public class Login extends Activity {
                     toastAppeared=true;
                 }
             }
-            else //run if username is not found in Student or Instructor DB
+            else
             {
                 Toast.makeText(Login.this, "Please Sign Up...", Toast.LENGTH_SHORT).show();
                 toastAppeared=true;
@@ -169,7 +150,7 @@ public class Login extends Activity {
         catch (Exception e)
         {
             //e.printStackTrace();
-            Toast.makeText(Login.this, "Unable to connect with server", Toast.LENGTH_SHORT).show(); //i ran into this problem when not connected to internet
+            Toast.makeText(Login.this, "Unable to connect with server", Toast.LENGTH_SHORT).show();
             toastAppeared=true;
         }
         finally
@@ -195,10 +176,6 @@ public class Login extends Activity {
         return registred;
     }
 
-    /**
-     * setupcreateACbtn() creates a new account which will allow users to login
-     * goes to CreateAccount.class
-     */
     private void setupcreateACbtn()
     {
         createACbtn.setOnClickListener(new View.OnClickListener() {
@@ -209,28 +186,16 @@ public class Login extends Activity {
         });
     }
 
-    /**
-     * getUserName() accessor method
-     * @return USER_NAME the name of the user
-     */
     public String getUserName()
     {
         return USER_NAME;
     }
 
-    /**
-     * setUserName() accessor method
-     * @param newUserName the new username to set to
-     */
     public void setUserName(String newUserName)
     {
         USER_NAME = newUserName;
     }
 
-    /**
-     * getUSER_ID() returns the USER_ID
-     * @return USER_ID the ID of the user
-     */
     public String getUSER_ID(){ return USER_ID;}
 
 }
