@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Registered Courses Instructors"
+            android:text="Registred Courses Instructors"
             android:id="@+id/textView"
             android:textColor="#FFFFFF"
             android:layout_centerInParent="true"

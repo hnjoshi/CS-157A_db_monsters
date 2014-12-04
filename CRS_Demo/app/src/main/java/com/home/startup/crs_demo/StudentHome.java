@@ -55,7 +55,7 @@ public class StudentHome extends Activity
         viewRegInstructBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StudentHome.this,ViewInstructors.class)); //ViewInstructors.class is having issues
+                startActivity(new Intent(StudentHome.this,DropClasses.class)); //swap with ViewInstructors.class later
             }
         });
     }
@@ -68,7 +68,7 @@ public class StudentHome extends Activity
         dropClassesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StudentHome.this,DropClasses.class)); //swap with ViewInstructors.class later
+                startActivity(new Intent(StudentHome.this,ViewInstructors.class));
             }
         });
     }

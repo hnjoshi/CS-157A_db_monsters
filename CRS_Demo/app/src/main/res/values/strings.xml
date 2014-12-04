@@ -43,6 +43,5 @@
     <string name="title_activity_assigned_courses">AssignedCourses</string>
     <string name="title_activity_assign_grades">AssignGrades</string>
     <string name="title_activity_drop_student">DropStudent</string>
-    <string name="title_activity_view_instructors">ViewInstructors</string>
 
 </resources>
