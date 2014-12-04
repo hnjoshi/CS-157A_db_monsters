@@ -66,6 +66,11 @@
                 android:singleLine="true"
                 android:maxLength="3" />
 
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="2"></TableLayout>
+
         </LinearLayout>
 
     </TableRow>
