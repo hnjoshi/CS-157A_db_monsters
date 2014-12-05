@@ -22,4 +22,5 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile files('libs/mysql-connector-java-3.0.17-ga-bin.jar')
+    compile files('libs/mysql-connector-java-5.0.8-bin.jar')
 }

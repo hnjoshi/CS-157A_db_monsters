@@ -60,4 +60,14 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Manager Login using code"
+        android:id="@+id/mgrloginbtn"
+        android:textSize="35sp"
+        android:layout_above="@+id/loginbtn"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

@@ -44,5 +44,6 @@
     <string name="title_activity_assign_grades">AssignGrades</string>
     <string name="title_activity_drop_student">DropStudent</string>
     <string name="title_activity_to_do">ToDo</string>
+    <string name="title_activity_manger_home">MangerHome</string>
 
 </resources>

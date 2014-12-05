@@ -82,6 +82,10 @@
             android:name="com.home.startup.crs_demo.ToDo"
             android:label="@string/title_activity_to_do" >
         </activity>
+        <activity
+            android:name="com.home.startup.crs_demo.MangerHome"
+            android:label="@string/title_activity_manger_home" >
+        </activity>
     </application>
 
 </manifest>

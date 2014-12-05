@@ -27,6 +27,8 @@ public class Login extends Activity {
     Button createACbtn;
     Spinner acType;
 
+    Button mgrbtn;
+
     boolean toastAppeared = false;
     boolean isStudent = false;
 
@@ -36,6 +38,7 @@ public class Login extends Activity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login);
 
+        mgrbtn = (Button)findViewById(R.id.mgrloginbtn);
         username = (EditText)findViewById(R.id.username);
         password = (EditText)findViewById(R.id.password);
         loginbtn = (Button)findViewById(R.id.loginbtn);
@@ -44,6 +47,32 @@ public class Login extends Activity {
 
         setupcreateACbtn();
         setupSignInbtn();
+        setupMgrLoginbtn();
+    }
+
+    private void setupMgrLoginbtn()
+    {
+        mgrbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setContentView(R.layout.mgr_login);
+                final EditText code = (EditText)findViewById(R.id.secureCodetxt);
+                Button mgrLbtn = (Button)findViewById(R.id.mgrLoginbtn);
+                mgrLbtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(code.getText().toString().equals("11223"))
+                        {
+                            startActivity(new Intent(getApplicationContext(), MangerHome.class));
+                        }
+                        else
+                        {
+                            Toast.makeText(Login.this, "Please provide valid PIN", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
     }
 
     private void setupSignInbtn()
