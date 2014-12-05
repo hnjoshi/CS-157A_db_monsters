@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.Window;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.Connection;
@@ -22,6 +23,9 @@ public class AssignedCourses extends Activity {
     private String time[];
     private String date[];
 
+    private TextView nClassestxt;
+    private TextView nUnitstxt;
+
     String userID;
 
     @Override
@@ -29,6 +33,9 @@ public class AssignedCourses extends Activity {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_assigned_courses);
+
+        nClassestxt = (TextView)findViewById(R.id.nClassestxt);
+        nUnitstxt = (TextView)findViewById(R.id.nUnitstxt);
 
         Login lg = new Login();
         userID = lg.getUSER_ID();
@@ -38,6 +45,8 @@ public class AssignedCourses extends Activity {
         CustomList adapter = new CustomList(AssignedCourses.this, title, time, date, thumbImg);
         list=(ListView)findViewById(R.id.list);
         list.setAdapter(adapter);
+
+        getClassesnUnits();
     }
 
     private void getAssignedCourses()
@@ -92,6 +101,68 @@ public class AssignedCourses extends Activity {
         {
             //e.printStackTrace();
             Toast.makeText(AssignedCourses.this, "Unable to connect with server", Toast.LENGTH_SHORT).show();
+        }
+        finally
+        {
+            if(conn != null)
+            {
+                try
+                {
+                    conn.close();
+                }
+                catch (Exception e)
+                {
+                    //e.printStackTrace();
+                }
+                finally {
+                    conn = null;
+                }
+
+            }
+
+        }
+    }
+
+    private void getClassesnUnits()
+    {
+        Connection conn = null;
+        try {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            conn = DriverManager.getConnection("jdbc:mysql://54.69.117.137:3306/db_monsters_crs", "crs_user", "password");
+
+            PreparedStatement pst = null;
+            ResultSet rs = null;
+            pst = conn.prepareStatement("select * from\n" +
+                    "(select * from\n" +
+                    "\t(select iID, count(iID) from courseassignment\n" +
+                    "        group by iID) m\n" +
+                    "where iID=?) x\n" +
+                    "        \n" +
+                    "union\n" +
+                    "\n" +
+                    "(select iID, sum(Credits) from\n" +
+                    "    (select * from courseassignment\n" +
+                    "\t\twhere iID=?) a\n" +
+                    "\tnatural join course c)");
+            pst.setString(1, userID);
+            pst.setString(2, userID);
+            rs = pst.executeQuery();
+
+            if(rs.next())
+            {
+                nClassestxt.setText(rs.getString(2));
+            }
+            if(rs.next())
+            {
+                nUnitstxt.setText(rs.getString(2));
+            }
+        }
+        catch (Exception e)
+        {
+            //e.printStackTrace();
         }
         finally
         {
