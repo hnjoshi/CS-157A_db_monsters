@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="All Course assignments will be delete before selected date."
+            android:text="All Course assignments/enrollments will be deleted/archived before selected date:"
             android:id="@+id/textView12"
             android:textSize="35sp" />
 
@@ -33,6 +33,15 @@
             android:layout_height="wrap_content"
             android:text="Delete Old Course Assignment"
             android:id="@+id/delOldbtn"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:textSize="35sp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Archive Old Course Enrollment"
+            android:id="@+id/archbtn"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
             android:textSize="35sp" />

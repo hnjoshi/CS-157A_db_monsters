@@ -1,7 +1,9 @@
 package com.home.startup.crs_demo;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -57,6 +59,7 @@ public class StudentProfile extends Activity {
     private void setupUpdatebtn()
     {
         updatebtn.setOnClickListener(new View.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.GINGERBREAD)
             @Override
             public void onClick(View view) {
 
@@ -115,6 +118,7 @@ public class StudentProfile extends Activity {
         });
     }
 
+    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     private void getUserData()
     {
         Connection conn = null;

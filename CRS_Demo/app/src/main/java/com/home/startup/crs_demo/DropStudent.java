@@ -1,8 +1,10 @@
 package com.home.startup.crs_demo;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -77,6 +79,7 @@ public class DropStudent extends Activity {
 
     }
 
+    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     private void dropSelectedStudent()
     {
         conn = null;
@@ -115,6 +118,7 @@ public class DropStudent extends Activity {
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     private void getRegisteredStudentsforSelectedCourse()
     {
         conn = null;
@@ -165,6 +169,7 @@ public class DropStudent extends Activity {
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     private void getAssignedCourses()
     {
         conn = null;

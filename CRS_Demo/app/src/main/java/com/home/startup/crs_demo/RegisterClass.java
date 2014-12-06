@@ -1,7 +1,9 @@
 package com.home.startup.crs_demo;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -57,6 +59,7 @@ public class RegisterClass extends Activity {
         });
     }
 
+    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     private boolean RegisteredClass(String courseID)
     {
         boolean registred = false;
@@ -111,6 +114,7 @@ public class RegisterClass extends Activity {
 
         return registred;
     }
+    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     private void registerForCourse(String courseID)
     {
         Date date = new Date();
@@ -170,6 +174,7 @@ public class RegisterClass extends Activity {
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     private void getOfferedCourses()
     {
         Connection conn = null;

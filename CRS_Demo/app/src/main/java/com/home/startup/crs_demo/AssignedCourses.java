@@ -1,7 +1,9 @@
 package com.home.startup.crs_demo;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.Window;
@@ -49,6 +51,7 @@ public class AssignedCourses extends Activity {
         getClassesnUnits();
     }
 
+    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     private void getAssignedCourses()
     {
         Connection conn = null;
@@ -123,6 +126,7 @@ public class AssignedCourses extends Activity {
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     private void getClassesnUnits()
     {
         Connection conn = null;

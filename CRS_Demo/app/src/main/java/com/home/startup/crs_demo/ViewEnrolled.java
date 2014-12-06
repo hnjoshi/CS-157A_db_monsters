@@ -1,7 +1,9 @@
 package com.home.startup.crs_demo;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.Window;
@@ -44,6 +46,7 @@ public class ViewEnrolled extends Activity {
         list.setAdapter(adapter);
     }
 
+    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     private void getEnrolledCourses()
     {
         Connection conn = null;

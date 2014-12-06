@@ -1,8 +1,10 @@
 package com.home.startup.crs_demo;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -94,6 +96,7 @@ public class DropClasses extends Activity {
     private void setupDropbtn()
     {
         dropbtn.setOnClickListener(new View.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.GINGERBREAD)
             @Override
             public void onClick(View v) {
 
@@ -130,6 +133,7 @@ public class DropClasses extends Activity {
         });
     }
 
+    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     private void getEnrolledCourses()
     {
         try {
