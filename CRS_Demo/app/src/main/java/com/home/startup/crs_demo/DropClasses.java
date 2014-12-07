@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -70,6 +71,9 @@ public class DropClasses extends Activity {
                     userChoice2[userChoiceptr] = title2[position];
                     userChoiceptr++;
                     selectedClassestxt.setText(selectedClassestxt.getText() + " " + title2[position]);
+
+                    Log.w("UserChoicePtr", userChoiceptr+"");
+                    Log.w("UserChoicePtr", userChoice[userChoiceptr-1]+"");
                 }
             }
         });
@@ -107,7 +111,7 @@ public class DropClasses extends Activity {
                     Class.forName("com.mysql.jdbc.Driver").newInstance();
                     conn = DriverManager.getConnection("jdbc:mysql://54.69.117.137:3306/db_monsters_crs", "crs_user", "password");
 
-                    for(int i=0; i<=userChoiceptr; i++) {
+                    for(int i=0; i<userChoiceptr; i++) {
                         PreparedStatement pst = null;
                         pst = conn.prepareStatement("DELETE FROM enrollment \n" +
                                 "WHERE sID=? and cID=?");

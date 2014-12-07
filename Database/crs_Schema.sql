@@ -21,6 +21,21 @@ SHOW WARNINGS;
 USE `db_monsters_crs` ;
 
 -- -----------------------------------------------------
+-- Table `db_monsters_crs`.`archenrollment`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `db_monsters_crs`.`archenrollment` (
+  `eID` INT(11) NOT NULL DEFAULT '0',
+  `Grade` VARCHAR(2) NULL DEFAULT NULL,
+  `sID` INT(11) NULL DEFAULT NULL,
+  `cID` INT(11) NULL DEFAULT NULL,
+  `updatedON` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`eID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+SHOW WARNINGS;
+
+-- -----------------------------------------------------
 -- Table `db_monsters_crs`.`department`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_monsters_crs`.`department` (
@@ -55,10 +70,10 @@ CREATE TABLE IF NOT EXISTS `db_monsters_crs`.`course` (
   CONSTRAINT `fk_Course_department1`
     FOREIGN KEY (`dID`)
     REFERENCES `db_monsters_crs`.`department` (`dID`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 29
+AUTO_INCREMENT = 54
 DEFAULT CHARACTER SET = utf8;
 
 SHOW WARNINGS;
@@ -79,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `db_monsters_crs`.`instructor` (
   CONSTRAINT `fk_instructor_department1`
     FOREIGN KEY (`dID`)
     REFERENCES `db_monsters_crs`.`department` (`dID`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 AUTO_INCREMENT = 9
@@ -95,22 +110,22 @@ CREATE TABLE IF NOT EXISTS `db_monsters_crs`.`courseassignment` (
   `Location` VARCHAR(255) NOT NULL,
   `iID` INT(11) NOT NULL,
   `cID` INT(11) NOT NULL,
-  `updatedON` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedON` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`aID`),
   INDEX `fk_OfficeAssignment_instructor1_idx` (`iID` ASC),
   INDEX `fk_officeassignment_course1_idx` (`cID` ASC),
   CONSTRAINT `fk_officeassignment_course1`
     FOREIGN KEY (`cID`)
     REFERENCES `db_monsters_crs`.`course` (`cID`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_OfficeAssignment_instructor1`
     FOREIGN KEY (`iID`)
     REFERENCES `db_monsters_crs`.`instructor` (`iID`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 15
+AUTO_INCREMENT = 39
 DEFAULT CHARACTER SET = utf8;
 
 SHOW WARNINGS;
@@ -131,10 +146,10 @@ CREATE TABLE IF NOT EXISTS `db_monsters_crs`.`student` (
   CONSTRAINT `fk_student_department1`
     FOREIGN KEY (`dID`)
     REFERENCES `db_monsters_crs`.`department` (`dID`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 19
+AUTO_INCREMENT = 11
 DEFAULT CHARACTER SET = utf8;
 
 SHOW WARNINGS;
@@ -147,38 +162,57 @@ CREATE TABLE IF NOT EXISTS `db_monsters_crs`.`enrollment` (
   `Grade` VARCHAR(2) NULL DEFAULT NULL,
   `sID` INT(11) NOT NULL,
   `cID` INT(11) NOT NULL,
-  `updatedON` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedON` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`eID`),
   INDEX `fk_Enrollment_student1_idx` (`sID` ASC),
   INDEX `fk_enrollment_course1_idx` (`cID` ASC),
   CONSTRAINT `fk_enrollment_course1`
     FOREIGN KEY (`cID`)
     REFERENCES `db_monsters_crs`.`course` (`cID`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Enrollment_student1`
     FOREIGN KEY (`sID`)
     REFERENCES `db_monsters_crs`.`student` (`sID`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 14
+AUTO_INCREMENT = 98
 DEFAULT CHARACTER SET = utf8;
 
 SHOW WARNINGS;
 USE `db_monsters_crs` ;
 
 -- -----------------------------------------------------
--- procedure CountEnrollment
+-- procedure archiveEnrollmentsUntil
 -- -----------------------------------------------------
 
 DELIMITER $$
 USE `db_monsters_crs`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `CountEnrollment`(IN courseID INT, OUT total INT)
-    DETERMINISTIC
-    COMMENT 'A procedure to return number of enrollment for given cID'
+CREATE DEFINER=`root`@`localhost` PROCEDURE `archiveEnrollmentsUntil`(IN d DATE)
 BEGIN
-    SELECT count(*) INTO total FROM enrollment WHERE cID=courseID;
+
+insert into archenrollment
+	select * from enrollment
+		where updatedON <= d;
+
+END$$
+
+DELIMITER ;
+SHOW WARNINGS;
+
+-- -----------------------------------------------------
+-- procedure deleteOlderAssignment
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `db_monsters_crs`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteOlderAssignment`(IN d DATE)
+BEGIN 
+delete from courseassignment
+	where iID = any (select iID from instructor
+						where instructor.iID = courseassignment.iID
+								and HireDate < d);
 END$$
 
 DELIMITER ;
@@ -190,15 +224,21 @@ SHOW WARNINGS$$
 USE `db_monsters_crs`$$
 CREATE
 DEFINER=`root`@`localhost`
-TRIGGER `db_monsters_crs`.`CourseStatus_Waitlisted`
+TRIGGER `db_monsters_crs`.`UpdateCourseStatus_toClose`
 AFTER INSERT ON `db_monsters_crs`.`enrollment`
 FOR EACH ROW
 BEGIN
-	IF (select count(*) from enrollment where cID=new.cID) = 
-    (select nSeats from course where cID=new.cID) THEN     
-    update course set course.status = 'waitlisted'
-    where cID=new.cID;
-	END IF;
+DECLARE totalSeats INT DEFAULT 0;
+DECLARE currentEnrolled INT DEFAULT 0;
+
+SET totalSeats = (select nSeats from course c where c.cID=new.cID);
+SET currentEnrolled = (select count(*) from enrollment e where e.cID=new.cID);
+
+ IF (totalSeats = currentEnrolled)
+ THEN
+  update course set course.status = 'close'
+  where cID=new.cID;
+ END IF;
 END$$
 
 SHOW WARNINGS$$
@@ -206,16 +246,21 @@ SHOW WARNINGS$$
 USE `db_monsters_crs`$$
 CREATE
 DEFINER=`root`@`localhost`
-TRIGGER `db_monsters_crs`.`CourseStatus_Open`
+TRIGGER `db_monsters_crs`.`UpdateCourseStatus_toOpen`
 AFTER DELETE ON `db_monsters_crs`.`enrollment`
 FOR EACH ROW
 BEGIN
-	IF (select count(*) from enrollment where cID=old.cID) < 
-		(select nSeats from course where cID=old.cID)
-	THEN     
-		update course set course.status = 'open'
-		where cID=old.cID;
-	END IF;
+DECLARE totalSeats INT DEFAULT 0;
+DECLARE currentEnrolled INT DEFAULT 0;
+
+SET totalSeats = (select nSeats from course c where c.cID=old.cID);
+SET currentEnrolled = (select count(*) from enrollment e where e.cID=old.cID);
+
+ IF (totalSeats > currentEnrolled)
+ THEN
+  update course set course.status = 'open'
+  where cID=old.cID;
+ END IF;
 END$$
 
 SHOW WARNINGS$$
