@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `db_monsters_crs`.`instructor` (
     ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 9
+AUTO_INCREMENT = 10
 DEFAULT CHARACTER SET = utf8;
 
 SHOW WARNINGS;
@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `db_monsters_crs`.`courseassignment` (
     ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 39
+AUTO_INCREMENT = 41
 DEFAULT CHARACTER SET = utf8;
 
 SHOW WARNINGS;
@@ -177,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `db_monsters_crs`.`enrollment` (
     ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 98
+AUTO_INCREMENT = 107
 DEFAULT CHARACTER SET = utf8;
 
 SHOW WARNINGS;
@@ -211,8 +211,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteOlderAssignment`(IN d DATE)
 BEGIN 
 delete from courseassignment
 	where iID = any (select iID from instructor
-						where instructor.iID = courseassignment.iID
-								and HireDate < d);
+						where instructor.iID = courseassignment.iID)
+						and updatedON < d;
 END$$
 
 DELIMITER ;

@@ -26,8 +26,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteOlderAssignment`(IN d DATE)
 BEGIN 
 delete from courseassignment
 	where iID = any (select iID from instructor
-						where instructor.iID = courseassignment.iID
-								and HireDate < d);
+						where instructor.iID = courseassignment.iID)
+						and updatedON < d;
 END$$
 
 DELIMITER ;
